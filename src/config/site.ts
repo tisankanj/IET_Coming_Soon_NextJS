@@ -34,5 +34,14 @@ export const CONTACT_LINKS = {
   )}`,
 } as const;
 
+// Official social profiles, given by the client on 18 September 2026. They are also the `sameAs`
+// entries in the business schema, so search engines can connect the profiles to the business.
+export const SOCIAL_LINKS = {
+  instagram: "https://www.instagram.com/ietservicepoint/",
+  facebook: "https://www.facebook.com/profile.php?id=61577026854664",
+  facebookPhotos: "https://www.facebook.com/profile.php?id=61577026854664&sk=photos",
+  facebookReels: "https://www.facebook.com/profile.php?id=61577026854664&sk=reels_tab",
+} as const;
+
 // Official TVS Sri Lanka genuine-parts guidance (docs/10-research-sources.md).
 export const TVS_GENUINE_PARTS_URL = "https://www.tvsmotor.com/en/lk/service/genuine-parts";

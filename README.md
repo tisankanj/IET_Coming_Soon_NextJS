@@ -81,7 +81,11 @@ Booking (4 steps), parts enquiry and partnership enquiry are validated in the br
 
 ## Analytics
 
-Events from the spec are pushed to `window.dataLayer`. Links use `data-track="click_call"` and sections use `data-track-view="view_tvs_authority"`, handled by one listener. Add a GA4 or Tag Manager ID to start collecting them.
+Events from the spec are pushed to `window.dataLayer`. Links use `data-track="click_call"` and sections use `data-track-view="view_tvs_authority"`, handled by one listener. Social links add `data-track="click_social"`. Add a GA4 or Tag Manager ID to start collecting them.
+
+## Social profiles
+
+The Instagram and Facebook links live in `SOCIAL_LINKS` in `src/config/site.ts`. They appear in the footer, in the contact methods, on the about page, and as `sameAs` in the business schema. The about page also embeds Facebook's page plugin (`FacebookFeed`) as a plain iframe: no Facebook script runs on the site, and the iframe only loads when a visitor scrolls near it. Facebook's own script logs console errors inside that iframe; they come from Facebook, not from this site. A live Instagram feed is not included, because it needs a Meta business app, a token that expires and app review, or a paid widget service.
 
 ## Before launch
 

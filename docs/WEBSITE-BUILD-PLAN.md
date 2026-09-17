@@ -126,7 +126,7 @@ The hero gear, rings, orange orbit, spark plug, spanner and bearing are built fr
 
 ## Open items for the client (not blocking)
 
-- Opening hours, Google Maps pin, social profile links, privacy policy text
+- Opening hours, Google Maps pin, privacy policy text
 - WhatsApp number (currently the main phone)
 - Whether IET services motorcycles (pages stay unpublished until confirmed)
 - Canonical host: `ietservice.lk` currently 308-redirects to `www.ietservice.lk`, but the docs, schema and canonical tags use `ietservice.lk`. Make the apex the primary domain in Vercel, or tell us to switch `SITE_URL` to `www`.

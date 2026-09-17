@@ -1,7 +1,9 @@
 import { MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 
+import { FacebookIcon } from "@/components/icons/facebook-icon";
+import { InstagramIcon } from "@/components/icons/instagram-icon";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
-import { ADDRESS_ONE_LINE, BUSINESS, CONTACT_LINKS } from "@/config/site";
+import { ADDRESS_ONE_LINE, BUSINESS, CONTACT_LINKS, SOCIAL_LINKS } from "@/config/site";
 
 const METHODS = [
   {
@@ -34,6 +36,22 @@ const METHODS = [
     href: CONTACT_LINKS.directions,
     icon: MapPinIcon,
     track: "click_directions",
+    external: true,
+  },
+  {
+    label: "Instagram",
+    value: "@ietservicepoint",
+    href: SOCIAL_LINKS.instagram,
+    icon: InstagramIcon,
+    track: "click_social",
+    external: true,
+  },
+  {
+    label: "Facebook",
+    value: BUSINESS.name,
+    href: SOCIAL_LINKS.facebook,
+    icon: FacebookIcon,
+    track: "click_social",
     external: true,
   },
 ];

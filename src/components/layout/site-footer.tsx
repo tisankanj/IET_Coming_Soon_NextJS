@@ -3,6 +3,7 @@ import { MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
+import { SOCIAL_PROFILES } from "@/components/shared/social-profiles";
 import { ADDRESS_ONE_LINE, BUSINESS, CONTACT_LINKS } from "@/config/site";
 import { FOOTER_GROUPS, TAGLINE } from "@/content/en/navigation";
 
@@ -70,6 +71,24 @@ export function SiteFooter() {
                 {ADDRESS_ONE_LINE}
               </a>
             </li>
+          </ul>
+
+          <ul className="mt-8 flex items-center gap-3">
+            {SOCIAL_PROFILES.map((profile) => (
+              <li key={profile.label}>
+                <a
+                  href={profile.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-track="click_social"
+                  data-track-location="footer"
+                  aria-label={`${BUSINESS.name} on ${profile.label}`}
+                  className="grid size-11 place-items-center rounded-control border border-white/15 text-white/85 transition-colors hover:border-brand-orange hover:text-white"
+                >
+                  <profile.icon className="size-4" />
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 

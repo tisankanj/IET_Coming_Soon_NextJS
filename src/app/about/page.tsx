@@ -1,9 +1,11 @@
 import { Leadership } from "@/components/home/leadership";
 import { SiteImage } from "@/components/media/site-image";
 import { CtaBand } from "@/components/shared/cta-band";
+import { FacebookFeed } from "@/components/shared/facebook-feed";
 import { GrowthPhases } from "@/components/shared/growth-phases";
 import { KeepHyphenWords } from "@/components/shared/keep-hyphen-words";
 import { PageHero } from "@/components/shared/page-hero";
+import { SOCIAL_PROFILES } from "@/components/shared/social-profiles";
 import { ROUTES } from "@/config/routes";
 import { BUSINESS } from "@/config/site";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -59,6 +61,24 @@ export default function AboutPage() {
               Our first branch has completed one year of operations. The next stage includes
               service-capability upgrades, digital booking and a second branch.
             </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <span className="text-sm font-semibold text-muted-foreground">Follow our work</span>
+              {SOCIAL_PROFILES.map((profile) => (
+                <a
+                  key={profile.label}
+                  href={profile.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-track="click_social"
+                  data-track-location="about"
+                  className="inline-flex items-center gap-2 rounded-control border px-4 py-2 text-sm font-semibold transition-colors hover:border-foreground/40"
+                >
+                  <profile.icon className="size-4 text-brand-orange" />
+                  {profile.label}
+                </a>
+              ))}
+            </div>
           </div>
 
           <aside className="lg:col-span-5">
@@ -113,6 +133,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <FacebookFeed />
 
       <CtaBand location="about_cta" />
     </>
