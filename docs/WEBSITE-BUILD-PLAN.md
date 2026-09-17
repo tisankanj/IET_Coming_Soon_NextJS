@@ -14,7 +14,7 @@
 | Motion | Motion (`motion/react`) through `LazyMotion`, plus CSS scroll-driven animation for decorative reveals. Everything respects `prefers-reduced-motion`. |
 | Scope of this branch | Foundation, full homepage, 20 core pages, forms, SEO. English only. |
 | Forms | Server Action validates with Zod, then hands off to WhatsApp (`+94 75 253 0495`) with a reference number. No data is stored or emailed yet. |
-| Images | AI art for mood and service detail, real photos for evidence. See `IMAGE-BRIEF.md`. Branded placeholders until files arrive. |
+| Images | AI art for mood and service detail, real photos for evidence. See `IMAGE-BRIEF.md`. Branded placeholders until files arrive. All 11 AI art images arrived on 17 September 2026; the real photos and the TVS logo are still pending. |
 
 ## Deviations from the spec, with reasons
 
@@ -121,6 +121,7 @@ The hero gear, rings, orange orbit, spark plug, spanner and bearing are built fr
 ## Engineering follow-ups
 
 - Mobile Lighthouse LCP is 3.5 s against the 2.5 s target, with and without 3D. The LCP element is the hero headline text, and the observed render delay was only 150 ms, so the gap looks like simulated throttling of the font and CSS chain. Check it on real phones and in field data before changing code.
+- On the service and Jaffna pages the hero image is now the mobile LCP element: Lighthouse mobile 95, LCP 2.9 to 3.0 s (96 and 2.7 to 2.8 s with placeholders), desktop 100. Adding `fetchPriority="high"` to the preloaded image made it worse (3.1 s), so it is not used. When measuring, request each page once first: the first request for an image size encodes the AVIF on the server and made LCP read 3.8 s.
 
 ## Open items for the client (not blocking)
 
@@ -128,6 +129,7 @@ The hero gear, rings, orange orbit, spark plug, spanner and bearing are built fr
 - WhatsApp number (currently the main phone)
 - Whether IET services motorcycles (pages stay unpublished until confirmed)
 - Official TVS logo file and written usage permission
+- Real photos: 9 required and 2 optional, listed in `IMAGE-BRIEF.md`
 - Canonical host: `ietservice.lk` currently 308-redirects to `www.ietservice.lk`, but the docs, schema and canonical tags use `ietservice.lk`. Make the apex the primary domain in Vercel, or tell us to switch `SITE_URL` to `www`.
 - Whether J. Sujinthan should be described as founder
 - Real reviews (the homepage review section stays hidden until they exist)

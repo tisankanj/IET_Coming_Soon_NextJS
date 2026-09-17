@@ -11,7 +11,7 @@ export function BookingBand() {
   return (
     <section className="relative isolate overflow-hidden bg-midnight-950 text-white">
       <div className="absolute inset-0 -z-10">
-        <SiteImage image="bookingNightRoad" sizes="100vw" className="object-[70%_center]" />
+        <SiteImage image="bookingNightRoad" sizes="100vw" className="object-[90%_center]" />
         <div className="absolute inset-0 bg-gradient-to-r from-midnight-950 via-midnight-950/85 to-midnight-950/20" />
       </div>
 

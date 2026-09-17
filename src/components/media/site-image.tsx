@@ -39,6 +39,8 @@ export function SiteImage({ image, sizes, preload = false, className, monogram }
       alt={entry.alt}
       fill
       sizes={sizes}
+      // No fetchPriority="high" with preload, even though Lighthouse suggests it: on mobile it made the
+      // hero image compete with CSS and fonts and raised LCP from 2.9 s to 3.1 s.
       preload={preload}
       className={cn("object-cover", className)}
     />

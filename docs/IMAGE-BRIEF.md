@@ -24,6 +24,13 @@ The design system bans AI images as **proof**. Anything a customer or a partner 
 
 ## A. AI art (11)
 
+**Received 17 September 2026: all 11 (A2 to A12), now live on the site as WebP.** Notes for a future round:
+
+- They arrived smaller than asked: 1122 × 1402 for the service art and 1672 × 941 for the two landscapes. That is enough for the current layouts. The booking band (A11) fills the full screen width, so regenerate it at 2400 px wide if it looks soft on large high-density screens.
+- Tiny AI lettering appears on the torque wrench (A6), the used spark plug (A8) and a tyre wall (A9). It cannot be read at the sizes the site uses. Regenerate only if a larger crop is ever needed.
+- A2 shows an engine bay that looks more like a van than a three-wheeler. Replace it with a real IET workshop photo when one exists.
+- The original PNG files are kept outside the repo in `../image-originals/ai-art/`.
+
 **Before you generate:**
 
 - Every prompt already says "no text, no logos". If the tool still adds letters, a fake badge, a TVS or Bajaj logo, or a number plate, regenerate. Fake branding cannot ship.

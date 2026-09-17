@@ -58,6 +58,8 @@ docs/                    spec, SEO pack, IMAGE-BRIEF.md, WEBSITE-BUILD-PLAN.md
 
 Until `ready` is `true`, the slot shows a branded placeholder, so a missing file never breaks a page.
 
+Keep the original files out of `public/`, because everything there is deployed. The AI art originals (about 2 MB each as PNG) are in `../image-originals/ai-art/`, next to this repo.
+
 ## 3D hero
 
 The homepage Service Core starts as an SVG. On capable desktops it fades to a three.js scene once the page is idle. The scene runs in `src/components/home/service-core-3d/service-core.worker.ts`, so loading three.js and compiling shaders never block a click or a scroll.
