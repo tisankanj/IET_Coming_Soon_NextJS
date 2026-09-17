@@ -122,6 +122,7 @@ The hero gear, rings, orange orbit, spark plug, spanner and bearing are built fr
 
 - Mobile Lighthouse LCP is 3.5 s against the 2.5 s target, with and without 3D. The LCP element is the hero headline text, and the observed render delay was only 150 ms, so the gap looks like simulated throttling of the font and CSS chain. Check it on real phones and in field data before changing code.
 - On the service and Jaffna pages the hero image is now the mobile LCP element: Lighthouse mobile 95, LCP 2.9 to 3.0 s (96 and 2.7 to 2.8 s with placeholders), desktop 100. Adding `fetchPriority="high"` to the preloaded image made it worse (3.1 s), so it is not used. When measuring, request each page once first: the first request for an image size encodes the AVIF on the server and made LCP read 3.8 s.
+- On `/services/` the first service card photo is the LCP element at every width, so it is preloaded rather than lazy loaded. Lab mobile LCP lands at 3.2 s either way (single runs ranged 3.1 to 3.4 s) and desktop costs 0.1 s, but a lazy LCP image is worse for real users and Lighthouse flags it.
 
 ## Open items for the client (not blocking)
 

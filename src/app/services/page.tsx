@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowRightIcon, PhoneIcon } from "lucide-react";
-import { cn } from "cn";
 
 import { SiteImage } from "@/components/media/site-image";
 import { CtaBand } from "@/components/shared/cta-band";
@@ -70,20 +69,14 @@ export default function ServicesPage() {
             {[completeService, REPAIR_SERVICE].map((service, index) => (
               <li
                 key={service.id}
-                className={cn(
-                  "group relative flex flex-col overflow-hidden rounded-panel border bg-card",
-                  index === 0 ? "md:col-span-2 lg:row-span-2" : "md:col-span-2 lg:flex-row",
-                )}
+                className="group relative flex flex-col overflow-hidden rounded-panel border bg-card lg:col-span-2"
               >
-                <div
-                  className={cn(
-                    "relative overflow-hidden",
-                    index === 0 ? "aspect-[4/3] lg:flex-1" : "aspect-[4/3] lg:aspect-auto lg:w-2/5",
-                  )}
-                >
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  {/* The first card's photo is this page's LCP element at every screen width. */}
                   <SiteImage
                     image={service.image}
-                    sizes="(min-width: 1024px) 45vw, (min-width: 768px) 90vw, 100vw"
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    preload={index === 0}
                     className="transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
@@ -106,25 +99,36 @@ export default function ServicesPage() {
             ))}
 
             {otherServices.map((service) => (
-              <li key={service.id} className="group relative flex flex-col rounded-panel border bg-card p-6">
-                <span aria-hidden="true" className="h-0.5 w-6 bg-brand-orange" />
-                <h3 className="mt-5 font-display text-lg font-semibold">
-                  <Link href={serviceHref(service)} className="after:absolute after:inset-0">
-                    {service.name}
-                  </Link>
-                </h3>
-                <p className="mt-2 text-sm text-subtle-foreground">{service.summary}</p>
-                <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-link">
-                  {serviceLinkLabel(service)}
-                  <ArrowRightIcon
-                    className="size-4 transition-transform group-hover:translate-x-0.5"
-                    aria-hidden="true"
+              <li
+                key={service.id}
+                className="group relative flex flex-col overflow-hidden rounded-panel border bg-card"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <SiteImage
+                    image={service.image}
+                    sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                    className="transition-transform duration-500 group-hover:scale-[1.03]"
                   />
-                </span>
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="font-display text-lg font-semibold">
+                    <Link href={serviceHref(service)} className="after:absolute after:inset-0">
+                      {service.name}
+                    </Link>
+                  </h3>
+                  <p className="mt-2 text-sm text-subtle-foreground">{service.summary}</p>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-link">
+                    {serviceLinkLabel(service)}
+                    <ArrowRightIcon
+                      className="size-4 transition-transform group-hover:translate-x-0.5"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </div>
               </li>
             ))}
 
-            <li className="relative flex flex-col justify-between gap-6 overflow-hidden rounded-panel bg-midnight-950 p-6 text-white lg:col-span-3">
+            <li className="relative flex flex-col justify-between gap-6 overflow-hidden rounded-panel border bg-midnight-950 p-6 text-white">
               <div>
                 <h3 className="font-display text-title font-semibold">
                   Not sure what your three-wheeler needs?
