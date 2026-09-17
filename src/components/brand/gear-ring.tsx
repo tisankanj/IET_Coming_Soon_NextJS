@@ -1,5 +1,7 @@
 // The IET gear arc, drawn from the gear in the logo. Used as the main mechanical motif.
 
+import { GEAR_TEETH, gearToothAngles } from "@/components/brand/gear-geometry";
+
 const CENTER = 200;
 
 function polar(radius: number, angle: number) {
@@ -8,20 +10,19 @@ function polar(radius: number, angle: number) {
   return `${x.toFixed(2)} ${y.toFixed(2)}`;
 }
 
-function buildGearPath(teeth: number, rootRadius: number, tipRadius: number) {
-  const step = (Math.PI * 2) / teeth;
-  let path = `M ${polar(rootRadius, step * 0.25)}`;
-  for (let tooth = 0; tooth < teeth; tooth++) {
-    const base = tooth * step;
-    path += ` L ${polar(tipRadius, base + step * 0.35)}`;
-    path += ` A ${tipRadius} ${tipRadius} 0 0 1 ${polar(tipRadius, base + step * 0.65)}`;
-    path += ` L ${polar(rootRadius, base + step * 0.75)}`;
-    path += ` A ${rootRadius} ${rootRadius} 0 0 1 ${polar(rootRadius, base + step * 1.25)}`;
+function buildGearPath(rootRadius: number, tipRadius: number) {
+  const teeth = gearToothAngles(GEAR_TEETH);
+  let path = `M ${polar(rootRadius, teeth[0].riseStart)}`;
+  for (const tooth of teeth) {
+    path += ` L ${polar(tipRadius, tooth.topStart)}`;
+    path += ` A ${tipRadius} ${tipRadius} 0 0 1 ${polar(tipRadius, tooth.topEnd)}`;
+    path += ` L ${polar(rootRadius, tooth.fallEnd)}`;
+    path += ` A ${rootRadius} ${rootRadius} 0 0 1 ${polar(rootRadius, tooth.nextRiseStart)}`;
   }
   return `${path} Z`;
 }
 
-const GEAR_PATH = buildGearPath(12, 150, 170);
+const GEAR_PATH = buildGearPath(150, 170);
 
 type GearRingProps = {
   className?: string;

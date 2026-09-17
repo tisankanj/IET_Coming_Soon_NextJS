@@ -28,7 +28,7 @@
 | Language switcher, `/ta/`, `/si/` | Not in this branch | Tamil and Sinhala need native review first. Copy lives in `src/content/en/` so translations are content-only later. |
 | Suspension & Steering, Water Wash pages | Listed on the homepage and `/services/`, link to booking | The docs give no page content for them. Avoids thin pages. |
 | Motion primitives as React components (FadeIn, LineDraw, ParallaxLayer, ...) | CSS scroll-driven utilities in `globals.css` (`reveal`, `draw-on-scroll`, `gear-turn`, `scan-on-scroll`). Motion only for the hero tilt and the Service OS image crossfade. | Decorative motion costs no JavaScript and degrades to static content where unsupported. No parallax layers yet; the spec asks for parallax to stay subtle. |
-| 3D Service Core | SVG Service Core with the AI render (`hero-service-core`) as its poster when it arrives | The spec schedules 3D after a performance baseline. |
+| 3D with `@react-three/fiber` and `drei`, backed by a static poster image | Plain three.js, drawn in a Web Worker on an OffscreenCanvas. The SVG Service Core is the poster: it paints first, stays for phones, reduced motion and older browsers, and fades out once the 3D is ready. No AI poster image. | `@react-three/fiber` 9.5 and later need React below 19.3, and this project runs React 19.3. The worker keeps three.js and shader compilation off the main thread. On the main thread, the first visit blocked input for about 530 ms. 3D was added after the Lighthouse baseline, as the spec asks. |
 
 ## Architecture
 
@@ -96,6 +96,31 @@ All eight tasks are complete on `dev/tisankan/main-website`.
 - **Open Graph image redirect.** With `trailingSlash: true`, the generated `/opengraph-image` URL returned 308. The share image is now a static file, `public/og/iet-service-point.png`, set on every page.
 - **Hero headline wrapped at the hyphen** ("Three- / wheeler"). Hyphenated words in headings are kept together (`KeepHyphenWords`), and the hero display size is capped so the headline stays on two lines.
 - **Duplicate submit event** in React StrictMode. The success panel now tracks one event per reference.
+
+## 3D Service Core (branch `dev/tisankan/hero-3d`)
+
+The hero gear, rings, orange orbit, spark plug, spanner and bearing are built from simple geometry in code, so the scene downloads no models or textures. Files: `src/components/home/service-core-stage.tsx` (who gets 3D) and `src/components/home/service-core-3d/` (worker, scene, parts).
+
+| Check | Result |
+| --- | --- |
+| Who gets 3D | 1024 px and wider, a mouse, no reduced motion, no data saver, at least 4 GB memory (when the browser reports it), OffscreenCanvas support, and WebGL 2 inside the worker. Everyone else keeps the SVG. |
+| Download | three.js chunk: 114 KB Brotli, fetched by the worker only on eligible desktops. Home first-load JS stays 208 KB Brotli. Phones never fetch it. |
+| Lighthouse desktop, 3 runs | 99, 100, 100 (98 before 3D). TBT 0 ms, CLS 0. The 3D loaded in every run. |
+| Lighthouse mobile | 91, the same as before 3D |
+| Main thread | No long tasks during load with 3D (Playwright, 5 loads, `longtask` observer). The scene is ready about 130 ms after the worker starts. |
+| Motion | Mouse tilt up to 3 degrees. Scroll turns the gear, rings and orbit up to 12 degrees; the parts only tilt. Drawing stops when nothing moves or the hero is off screen. |
+| Failure | If the worker cannot load or WebGL fails, the SVG stays (tested by blocking the three.js chunk) |
+
+### Issues found and fixed during 3D QA
+
+- **Parts cut off by the canvas edge.** The bearing and spanner sat past the canvas edge, and at 1024 px the bearing covered the lead paragraph and the orbit touched the headline. The parts now only tilt, at positions checked with a projection script to stay inside the canvas at full tilt and clear of both Branch chips and the headline. The orbit radius went from 4.3 to 3.75 so it stays inside at every scroll angle.
+- **Invisible canvas blocked the headline.** At 1024 px the canvas covered the end of the headline, so clicks and text selection hit the canvas. The canvas no longer takes pointer events.
+- **3D setup blocked the main thread.** About 107 ms with a warm shader cache and about 530 ms on a first visit (M3 Pro), enough to delay a click. The scene now runs in a Web Worker.
+- **Gear outline far heavier than needed.** One curve setting served both the tiny tooth arcs and the hole, which gave the gear 58,752 vertices. The hole now has its own points: 12,672 vertices, and a smoother hole.
+
+## Engineering follow-ups
+
+- Mobile Lighthouse LCP is 3.5 s against the 2.5 s target, with and without 3D. The LCP element is the hero headline text, and the observed render delay was only 150 ms, so the gap looks like simulated throttling of the font and CSS chain. Check it on real phones and in field data before changing code.
 
 ## Open items for the client (not blocking)
 

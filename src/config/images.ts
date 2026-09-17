@@ -11,13 +11,6 @@ export type SiteImage = {
 };
 
 export const SITE_IMAGES = {
-  heroServiceCore: {
-    src: "/images/art/hero-service-core.webp",
-    alt: "",
-    width: 2048,
-    height: 2048,
-    ready: false,
-  },
   serviceCompleteInspection: {
     src: "/images/art/service-complete-inspection.webp",
     alt: "Mechanic checking a three-wheeler engine with an inspection lamp",

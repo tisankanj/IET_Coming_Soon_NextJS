@@ -16,13 +16,13 @@ The design system bans AI images as **proof**. Anything a customer or a partner 
 
 | Group | Folder | Count |
 | --- | --- | --- |
-| A. AI art | `public/images/art/` | 12 |
+| A. AI art | `public/images/art/` | 11 |
 | B. Real photos | `public/images/photos/` | 9 required, 2 optional |
 | C. Official brand files | `public/brand/` | 1 |
 
 ---
 
-## A. AI art (12)
+## A. AI art (11)
 
 **Before you generate:**
 
@@ -32,7 +32,6 @@ The design system bans AI images as **proof**. Anything a customer or a partner 
 
 | # | File name | Used on | Size / ratio |
 | --- | --- | --- | --- |
-| A1 | `hero-service-core` | Homepage hero (also the poster for the future 3D version) | 2048 × 2048, 1:1, transparent PNG if possible |
 | A2 | `service-complete-inspection` | Homepage Service OS "Complete Service", `/services/three-wheeler-service/`, `/services/` | 1600 × 2000, 4:5 |
 | A3 | `service-repair-engine-work` | `/services/three-wheeler-repair/`, `/services/` | 1600 × 2000, 4:5 |
 | A4 | `service-oil-pour` | Service OS "Oil", `/services/oil-service/` | 1600 × 2000, 4:5 |
@@ -45,11 +44,7 @@ The design system bans AI images as **proof**. Anything a customer or a partner 
 | A11 | `booking-night-road` | Homepage booking section | 2400 × 1350, 16:9 |
 | A12 | `jaffna-palmyra-road` | `/service-areas/jaffna/` hero | 2400 × 1350, 16:9 |
 
-### A1 `hero-service-core`
-
-```text
-A premium 3D-rendered mechanical emblem floating in empty dark space. A thick brushed-steel gear ring with 12 precise teeth, and inside it a thinner glossy service-blue ring (#0267A4). One thin glowing orange energy line (#F36102) sweeps around the gear in a tilted elliptical orbit. Three small real mechanical parts float close to the ring: a spark plug, a small spanner and a bearing. The centre of the rings is completely empty and dark so text can be placed there later. Object centred and filling about 80% of the square frame, seen slightly from below at a 15-degree angle. Studio product lighting, crisp realistic metal reflections, subtle depth of field. Transparent background; if transparency is not possible, a flat solid #061521 background with no vignette and no gradient. No text, no letters or numbers on the ring, no logos, no watermark. Square 1:1.
-```
+A1 (`hero-service-core`) is no longer needed. The homepage hero is now a 3D scene drawn in code, with an SVG version for phones. The other numbers stay the same so earlier references still match.
 
 ### A2 `service-complete-inspection`
 

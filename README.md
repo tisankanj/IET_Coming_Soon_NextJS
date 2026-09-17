@@ -10,6 +10,7 @@ Main website for **IET Service Point**, TVS Authorized Three-Wheeler Dealer and 
 | Styling | Tailwind CSS v4, brand tokens in `src/app/globals.css` |
 | Primitives | shadcn/ui on Radix (restyled): button, input, textarea, label, native select, sheet |
 | Motion | Motion (`motion/react`, lazy features) plus CSS scroll-driven animations |
+| 3D | three.js without a React wrapper, drawn in a Web Worker on an OffscreenCanvas |
 | Validation | Zod 4 in Server Actions |
 | Quality gate | Prettier, ESLint (`eslint-config-next`), `tsc`, husky + lint-staged |
 
@@ -32,6 +33,7 @@ Git hooks: `pre-commit` runs lint-staged on staged files, `pre-push` runs `npm r
 ```text
 src/app/                 routes (21 pages), sitemap.ts, robots.ts, icons
 src/components/home/     homepage sections
+src/components/home/service-core-3d/   3D hero: worker, scene, parts
 src/components/shared/   PageHero, CtaBand, FaqList, ServiceJourney, JaffnaMap, GrowthPhases, ...
 src/components/layout/   header, mobile menu, footer, mobile action bar, analytics listener
 src/components/ui/       shadcn primitives (restyled to the IET system)
@@ -55,6 +57,15 @@ docs/                    spec, SEO pack, IMAGE-BRIEF.md, WEBSITE-BUILD-PLAN.md
 3. In `src/config/images.ts`, set the real `width` and `height` and change `ready` to `true`.
 
 Until `ready` is `true`, the slot shows a branded placeholder, so a missing file never breaks a page.
+
+## 3D hero
+
+The homepage Service Core starts as an SVG. On capable desktops it fades to a three.js scene once the page is idle. The scene runs in `src/components/home/service-core-3d/service-core.worker.ts`, so loading three.js and compiling shaders never block a click or a scroll.
+
+- **Who gets 3D**: `canRender3d()` in `src/components/home/service-core-stage.tsx`. Phones, reduced motion, data saver and older browsers keep the SVG. The SVG also stays if the worker or WebGL fails.
+- **Moving a part**: positions are in `create-service-core-scene.ts`. At 1024 px there is little room between the headline, the Branch chips and the screen edge. Check 1024, 1280 and 1440 px with the mouse at each corner of the gear.
+- **Gear shape**: `src/components/brand/gear-geometry.ts` feeds both the SVG and the 3D gear, so they always match.
+- Numbers and the reasons behind this setup: "3D Service Core" in `docs/WEBSITE-BUILD-PLAN.md`.
 
 ## Forms
 
