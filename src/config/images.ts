@@ -81,6 +81,13 @@ export const SITE_IMAGES = {
     height: 941,
     ready: true,
   },
+  visionStation: {
+    src: "/images/art/iet-vision-station.webp",
+    alt: "Illustration of the service station IET Service Point is working towards",
+    width: 1672,
+    height: 941,
+    ready: true,
+  },
   jaffnaPalmyraRoad: {
     src: "/images/art/jaffna-palmyra-road.webp",
     alt: "Palmyra palms along a quiet road in northern Sri Lanka",
