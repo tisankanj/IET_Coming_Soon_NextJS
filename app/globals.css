@@ -90,7 +90,7 @@ svg {
 }
 
 .brand-lockup img {
-  width: 104px;
+  width: 82px;
   height: 82px;
   object-fit: contain;
 }
@@ -491,7 +491,7 @@ h1 em {
   }
 
   .brand-lockup { min-width: 0; }
-  .brand-lockup img { width: 78px; height: 64px; }
+  .brand-lockup img { width: 82px; height: 82px; }
   .brand-copy strong { font-size: 17px; }
   .brand-copy span { font-size: 8px; }
   .header-actions a span { display: none; }
@@ -510,7 +510,7 @@ h1 em {
 
   .hero-scene { display: none; }
   .hero-copy { width: 100%; }
-  h1 { font-size: clamp(3.8rem, 17vw, 6.2rem); }
+  h1 { font-size: clamp(3.5rem, 15vw, 6rem); word-break: break-word; }
   .lead { max-width: 500px; }
   .proof-row { gap: 15px; }
   .proof-row strong { font-size: 11px; }
@@ -557,9 +557,11 @@ h1 em {
 @media (max-width: 520px) {
   .brand-copy { display: none; }
   .eyebrow { font-size: 8px; letter-spacing: .16em; }
+  h1 { font-size: clamp(3rem, 14vw, 4.5rem); word-break: break-word; }
   .lead { font-size: 14px; }
-  .proof-row { align-items: flex-start; }
-  .proof-row > div:not(.proof-rule) { max-width: 140px; }
+  .proof-row { flex-direction: column; gap: 15px; }
+  .proof-rule { width: 100%; height: 1px; }
+  .proof-row > div:not(.proof-rule) { max-width: 100%; text-align: center; }
   .cta-row { flex-direction: column; }
   .cta { width: 100%; }
   .jaffna-signature { display: none; }

@@ -80,10 +80,10 @@ export default function ComingSoonPage() {
       <header className="site-header">
         <div className="brand-lockup">
           <Image
-            src="/brand/iet-service-point-logo.png"
+            src="/brand/logo-v2.png"
             alt="IET Service Point"
-            width={150}
-            height={118}
+            width={120}
+            height={120}
             priority
           />
           <div className="brand-copy">
