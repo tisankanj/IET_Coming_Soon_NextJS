@@ -14,7 +14,7 @@
 | Motion | Motion (`motion/react`) through `LazyMotion`, plus CSS scroll-driven animation for decorative reveals. Everything respects `prefers-reduced-motion`. |
 | Scope of this branch | Foundation, full homepage, 20 core pages, forms, SEO. English only. |
 | Forms | Server Action validates with Zod, then hands off to WhatsApp (`+94 75 253 0495`) with a reference number. No data is stored or emailed yet. |
-| Images | AI art for mood and service detail, real photos for evidence. See `IMAGE-BRIEF.md`. Branded placeholders until files arrive. All 11 AI art images arrived on 17 September 2026; the real photos and the TVS logo are still pending. |
+| Images | AI art for mood and service detail, real photos for evidence. See `IMAGE-BRIEF.md`. Branded placeholders until files arrive. All 11 AI art images and the official TVS logo arrived on 17 September 2026; the real photos are still pending. |
 
 ## Deviations from the spec, with reasons
 
@@ -128,7 +128,6 @@ The hero gear, rings, orange orbit, spark plug, spanner and bearing are built fr
 - Opening hours, Google Maps pin, social profile links, privacy policy text
 - WhatsApp number (currently the main phone)
 - Whether IET services motorcycles (pages stay unpublished until confirmed)
-- Official TVS logo file and written usage permission
 - Real photos: 9 required and 2 optional, listed in `IMAGE-BRIEF.md`
 - Canonical host: `ietservice.lk` currently 308-redirects to `www.ietservice.lk`, but the docs, schema and canonical tags use `ietservice.lk`. Make the apex the primary domain in Vercel, or tell us to switch `SITE_URL` to `www`.
 - Whether J. Sujinthan should be described as founder

@@ -153,6 +153,8 @@ Wide landscape photograph of a quiet red-earth road lined with palmyra palm tree
 | --- | --- | --- | --- |
 | C1 | `tvs-logo` | Homepage TVS authority section, `/tvs-authorized-three-wheeler-dealer/` (added once the file and permission arrive) | The official TVS logo file (SVG preferred) from TVS / the dealer brand kit, plus written permission to use it on the website. Do not screenshot it or recreate it with AI. |
 
+**C1 received 17 September 2026** as a transparent PNG (the "TVS Authorized Three Wheeler Dealer" lockup, no SVG). Tisankan confirmed it is the official file and approved its use. It is live as `public/brand/tvs-logo.png`, with only the empty margin trimmed, on a white badge (`TvsLogo`) in both places above. The original is kept outside the repo in `../image-originals/brand/`.
+
 The IET logo (`public/brand/logo-v2.png`) is already in the project and will not be changed.
 
 ---

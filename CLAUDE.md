@@ -20,6 +20,7 @@ Read `README.md` for setup. The spec lives in `docs/` (start with `IET_Frontend_
 - Collapsible content uses native `<details>` so it stays in the HTML for search engines.
 - Forms dispatch Server Actions from `onSubmit` (a `<form action>` would clear fields after a server error). Keep `PHONE_INPUT_PATTERN` valid under the regex `v` flag.
 - Images go through `SiteImage` and the manifest in `src/config/images.ts`.
+- The official TVS logo appears only through `TvsLogo` (`src/components/brand/tvs-logo.tsx`): unchanged, on its white badge. Never recolor it, crop into it or place it straight on a dark surface (design system doc: logos only on a controlled light badge).
 - JSON-LD must only describe content that is visible on the page.
 - `three` is imported only by the 3D worker (`src/components/home/service-core-3d/service-core.worker.ts`) and the files it imports. Main-thread code may only `import type` from them. three.js on the main thread blocked input for about 530 ms on a first visit.
 - The SVG gear and the 3D gear share `src/components/brand/gear-geometry.ts`. Change the tooth shape there, never in only one of them.

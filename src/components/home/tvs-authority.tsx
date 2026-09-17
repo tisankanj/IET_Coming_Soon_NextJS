@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ShieldCheckIcon } from "lucide-react";
 
+import { TvsLogo } from "@/components/brand/tvs-logo";
 import { SiteImage } from "@/components/media/site-image";
 import { KeepHyphenWords } from "@/components/shared/keep-hyphen-words";
 import { Button } from "@/components/ui/button";
@@ -14,18 +15,21 @@ export function TvsAuthority() {
   return (
     <section data-track-view="view_tvs_authority" className="bg-surface-soft section-y">
       <div className="container-wide">
-        <div className="reveal max-w-3xl">
-          <p className="text-sm font-semibold tracking-[0.14em] text-brand-blue uppercase dark:text-brand-cyan">
-            Authorization
-          </p>
-          <h2 className="mt-4 text-headline font-bold">
-            <KeepHyphenWords text={BUSINESS.authorization} />
-          </h2>
-          <p className="mt-6 text-lead text-subtle-foreground">
-            IET Service Point is a {BUSINESS.authorization} and {BUSINESS.partsAuthorization} in Inuvil West,
-            Jaffna. We make TVS three-wheeler support, genuine parts and reliable workshop service easier to
-            reach in Northern Sri Lanka.
-          </p>
+        <div className="reveal flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.14em] text-brand-blue uppercase dark:text-brand-cyan">
+              Authorization
+            </p>
+            <h2 className="mt-4 text-headline font-bold">
+              <KeepHyphenWords text={BUSINESS.authorization} />
+            </h2>
+            <p className="mt-6 text-lead text-subtle-foreground">
+              IET Service Point is a {BUSINESS.authorization} and {BUSINESS.partsAuthorization} in Inuvil
+              West, Jaffna. We make TVS three-wheeler support, genuine parts and reliable workshop service
+              easier to reach in Northern Sri Lanka.
+            </p>
+          </div>
+          <TvsLogo className="w-64 shrink-0 sm:w-80 lg:w-96" />
         </div>
 
         <div className="relative mt-12 lg:mt-16">

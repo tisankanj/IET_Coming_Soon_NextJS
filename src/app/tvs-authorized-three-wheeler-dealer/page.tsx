@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRightIcon, BanIcon, MapPinIcon, PhoneIcon, ShieldCheckIcon } from "lucide-react";
 
+import { TvsLogo } from "@/components/brand/tvs-logo";
 import { SiteImage } from "@/components/media/site-image";
 import { CtaBand } from "@/components/shared/cta-band";
 import { FaqList } from "@/components/shared/faq-list";
@@ -75,7 +76,10 @@ export default function TvsDealerPage() {
 
       <section data-track-view="view_tvs_authority" className="section-y">
         <div className="container-wide">
-          <h2 className="reveal max-w-2xl text-headline font-bold">What our authorization covers.</h2>
+          <div className="reveal flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+            <h2 className="max-w-2xl text-headline font-bold">What our authorization covers.</h2>
+            <TvsLogo className="w-64 shrink-0 sm:w-80 lg:w-96" />
+          </div>
           <div className="mt-12 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
             <div className="reveal rounded-panel border bg-card p-6 sm:p-8">
               <ShieldCheckIcon className="size-8 text-brand-orange" aria-hidden="true" />
