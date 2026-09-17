@@ -1,0 +1,349 @@
+/* IET Service Point design system. Source: docs/IET_Website_Design_System_and_UIUX.md */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* No theme toggle: dark mode follows the visitor's system setting. */
+@custom-variant dark (@media (prefers-color-scheme: dark));
+
+@theme {
+  /* Logo-derived brand colors */
+  --color-brand-blue: #0267a4;
+  --color-brand-cyan: #0998d3;
+  --color-brand-orange: #f36102;
+  --color-brand-orange-strong: #db5200;
+  --color-brand-red: #ef2001;
+  --color-brand-gold: #fa980d;
+
+  /* Premium dark foundation */
+  --color-midnight-950: #061521;
+  --color-midnight-900: #081c2e;
+  --color-midnight-800: #0c2942;
+  --color-mist: #b7c4cf;
+
+  /* Text and light surfaces */
+  --color-ink-950: #0a111a;
+  --color-ink-700: #334155;
+  --color-ink-500: #64748b;
+  --color-surface-50: #f7f9fb;
+  --color-surface-100: #eef3f7;
+  --color-line: #d9e2ea;
+
+  /* Type scale */
+  /* Sized so "Three-wheeler care." stays on one line in the desktop hero column. */
+  --text-display: clamp(2.5rem, 1.5rem + 4.2vw, 4.375rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.045em;
+  --text-hero: clamp(3.1rem, 0.05rem + 4.8vw, 4.375rem);
+  --text-hero--line-height: 0.98;
+  --text-hero--letter-spacing: -0.045em;
+  --text-headline: clamp(2rem, 1.45rem + 2.4vw, 3.5rem);
+  --text-headline--line-height: 1.05;
+  --text-headline--letter-spacing: -0.035em;
+  --text-title: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
+  --text-title--line-height: 1.2;
+  --text-title--letter-spacing: -0.02em;
+  --text-lead: clamp(1.0625rem, 0.98rem + 0.35vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+
+  /* Radius rule: controls 12px, panels 16px, technical chips 8px, media frames asymmetric */
+  --radius-control: 0.75rem;
+  --radius-panel: 1rem;
+  --radius-chip: 0.5rem;
+
+  --shadow-soft: 0 16px 50px rgb(6 21 33 / 0.1);
+  --shadow-deep: 0 24px 80px rgb(2 8 20 / 0.32);
+  --shadow-orange: 0 18px 60px rgb(243 97 2 / 0.18);
+
+  --ease-precise: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-display);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-surface-soft: var(--surface-soft);
+  --color-surface-strong: var(--surface-strong);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-link: var(--link);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+:root {
+  --radius: 0.75rem;
+  --gutter: 1rem;
+
+  --background: #ffffff;
+  --foreground: #0a111a;
+  --subtle-foreground: #334155;
+  --surface-soft: #f7f9fb;
+  --surface-strong: #eef3f7;
+  --card: #ffffff;
+  --card-foreground: #0a111a;
+  --popover: #ffffff;
+  --popover-foreground: #0a111a;
+  /* Midnight text on IET orange is 5.7:1. White on this orange fails WCAG AA (3.2:1). */
+  --primary: #f36102;
+  --primary-foreground: #061521;
+  --secondary: #eef3f7;
+  --secondary-foreground: #0a111a;
+  --muted: #f7f9fb;
+  --muted-foreground: #64748b;
+  --accent: #eef3f7;
+  --accent-foreground: #0a111a;
+  --destructive: #c41a00;
+  --border: #d9e2ea;
+  --input: #7f91a3;
+  --ring: #0998d3;
+  --link: #0267a4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #061521;
+    --foreground: #f8fafc;
+    --subtle-foreground: #d3dde5;
+    --surface-soft: #081c2e;
+    --surface-strong: #0c2942;
+    --card: #081c2e;
+    --card-foreground: #f8fafc;
+    --popover: #081c2e;
+    --popover-foreground: #f8fafc;
+    --primary: #ff720d;
+    --primary-foreground: #061521;
+    --secondary: #0c2942;
+    --secondary-foreground: #f8fafc;
+    --muted: #081c2e;
+    --muted-foreground: #b7c4cf;
+    --accent: #0c2942;
+    --accent-foreground: #f8fafc;
+    --destructive: #ff6b57;
+    --border: rgb(255 255 255 / 0.12);
+    --input: rgb(255 255 255 / 0.38);
+    --ring: #0998d3;
+    --link: #4db3e6;
+  }
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --gutter: 1.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --gutter: 2rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: rgb(243 97 2 / 0.25);
+  }
+}
+
+@utility container-site {
+  width: min(100% - 2 * var(--gutter), 75rem);
+  margin-inline: auto;
+}
+
+@utility container-wide {
+  width: min(100% - 2 * var(--gutter), 90rem);
+  margin-inline: auto;
+}
+
+@utility container-text {
+  width: min(100% - 2 * var(--gutter), 45rem);
+  margin-inline: auto;
+}
+
+@utility section-y {
+  padding-block: clamp(4.5rem, 3rem + 6vw, 8rem);
+}
+
+@utility tech-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@utility tech-grid-light {
+  background-image:
+    linear-gradient(to right, rgb(10 17 26 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(10 17 26 / 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@utility frame-asym {
+  border-radius: 16px 16px 48px 16px;
+
+  @media (min-width: 48rem) {
+    border-radius: 24px 24px 80px 24px;
+  }
+}
+
+@utility cut-corner {
+  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
+}
+
+/* Motion. Time-based animations collapse under reduced motion; scroll-driven ones only run with no-preference. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@keyframes lift-in {
+  from {
+    transform: translateY(14px);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes gear-turn {
+  to {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes scan-pass {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(var(--scan-distance, 100%));
+  }
+}
+
+@utility rise-in {
+  animation: rise-in 700ms var(--ease-precise) both;
+  animation-delay: calc(var(--rise-order, 0) * 90ms);
+}
+
+/* The H1 only moves, it never fades, so it can still be the LCP element on first paint. */
+@utility lift-in {
+  animation: lift-in 700ms var(--ease-precise) both;
+}
+
+@utility draw-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+@supports ((animation-timeline: view()) and (animation-range: entry)) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-up var(--ease-precise) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+
+    .draw-on-scroll {
+      animation: draw-line linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 55%;
+    }
+
+    .gear-turn {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: gear-turn linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+    }
+
+    .scan-on-scroll {
+      animation: scan-pass linear both;
+      animation-timeline: view();
+      animation-range: cover 20% cover 70%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
