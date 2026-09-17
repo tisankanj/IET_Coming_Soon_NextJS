@@ -1,56 +1,75 @@
-# IET Service Point — Premium Coming Soon Page
+# IET Service Point Website
 
-Production-oriented Next.js implementation of the approved cinematic coming-soon concept.
+Main website for **IET Service Point**, TVS Authorized Three-Wheeler Dealer and Authorized TVS Genuine Parts Seller in Inuvil West, Jaffna. Built from the spec in `docs/`.
 
-## Included
+## Stack
 
-- Exact supplied IET Service Point logo (`public/brand/iet-service-point-logo.png`)
-- Cinematic visual crop based on the approved preview (`public/media/iet-cinematic-scene.webp`)
-- Full approved reference (`public/media/approved-reference.webp`)
-- Responsive desktop/mobile UI
-- Live phone, email and WhatsApp actions
-- SEO metadata
-- Reduced-motion support
-- No external UI or animation dependency
-- Editable text/CTA layer
-- CSS-driven launch progress panel
-- Pointer-based micro parallax on desktop
+| Area | Choice |
+| --- | --- |
+| Framework | Next.js 16 App Router, React 19, TypeScript 6 (strict) |
+| Styling | Tailwind CSS v4, brand tokens in `src/app/globals.css` |
+| Primitives | shadcn/ui on Radix (restyled): button, input, textarea, label, native select, sheet |
+| Motion | Motion (`motion/react`, lazy features) plus CSS scroll-driven animations |
+| Validation | Zod 4 in Server Actions |
+| Quality gate | Prettier, ESLint (`eslint-config-next`), `tsc`, husky + lint-staged |
 
-## Run
+All versions are pinned exactly in `package.json`. TypeScript stays on 6.0.x because `typescript-eslint` does not support TypeScript 7 yet.
+
+## Commands
 
 ```bash
 npm install
-npm run dev
-```
-
-Open:
-
-```text
-http://localhost:3000
-```
-
-## Build
-
-```bash
+npm run dev          # http://localhost:3000
+npm run check        # prettier --check, eslint, tsc, next build
 npm run build
 npm start
 ```
 
-## Update contact details
+Git hooks: `pre-commit` runs lint-staged on staged files, `pre-push` runs `npm run check`.
 
-Edit constants at the top of:
+## Where things live
 
 ```text
-app/page.tsx
+src/app/                 routes (21 pages), sitemap.ts, robots.ts, icons
+src/components/home/     homepage sections
+src/components/shared/   PageHero, CtaBand, FaqList, ServiceJourney, JaffnaMap, GrowthPhases, ...
+src/components/layout/   header, mobile menu, footer, mobile action bar, analytics listener
+src/components/ui/       shadcn primitives (restyled to the IET system)
+src/features/enquiries/  booking, parts and partnership forms, Server Actions, Zod schemas
+src/content/en/          all page copy (services, people, FAQ, partners, navigation, form options)
+src/config/              business facts (site.ts), routes, image manifest (images.ts)
+src/lib/                 SEO metadata, JSON-LD builders, analytics
+docs/                    spec, SEO pack, IMAGE-BRIEF.md, WEBSITE-BUILD-PLAN.md
 ```
 
-## Production note
+## Editing content
 
-The cinematic scene is a visual asset derived from the approved concept to preserve the exact art direction. All important business copy, CTAs and SEO content remain live HTML instead of being baked into the image.
+- **Business facts** (phone, email, address, WhatsApp, domain): `src/config/site.ts` only. Every page, link and schema reads from it.
+- **Page copy**: `src/content/en/`. Tamil and Sinhala will be added as `src/content/ta/` and `src/content/si/` after native review.
+- **Rules that must not break**: the TVS authorization is for **three-wheelers only**. Never add invented reviews, numbers, partners, prices, opening hours or a Branch 02 address.
 
-Before deployment:
-1. Confirm TVS brand-asset usage permissions.
-2. Confirm WhatsApp number.
-3. Add final favicon / OG image.
-4. Test Cloudflare caching and crawler access.
-5. Deploy to ietservice.lk.
+## Adding images
+
+1. Read `docs/IMAGE-BRIEF.md` for the file names, sizes and prompts.
+2. Convert the file to `.webp` and place it in `public/images/art/` (AI art) or `public/images/photos/` (real photos).
+3. In `src/config/images.ts`, set the real `width` and `height` and change `ready` to `true`.
+
+Until `ready` is `true`, the slot shows a branded placeholder, so a missing file never breaks a page.
+
+## Forms
+
+Booking (4 steps), parts enquiry and partnership enquiry are validated in the browser for quick feedback and again on the server with Zod. A valid enquiry gets a reference number (for example `IET-B-260917-7K3Q`) and opens WhatsApp to `+94 75 253 0495` with the details filled in. Nothing is stored or emailed yet. The in-memory rate limit is best effort only; add a shared limiter before storing or emailing submissions.
+
+## SEO
+
+- Unique title, description, self canonical, Open Graph and Twitter tags on every page (`src/lib/seo/metadata.ts`). Share image: `public/og/iet-service-point.png`.
+- JSON-LD from visible content only: AutoRepair + AutoPartsStore, Person, Service, BreadcrumbList.
+- `trailingSlash: true`, `sitemap.xml`, and `robots.txt` allowing Googlebot, Bingbot and OAI-SearchBot.
+
+## Analytics
+
+Events from the spec are pushed to `window.dataLayer`. Links use `data-track="click_call"` and sections use `data-track-view="view_tvs_authority"`, handled by one listener. Add a GA4 or Tag Manager ID to start collecting them.
+
+## Before launch
+
+See "Open items for the client" in `docs/WEBSITE-BUILD-PLAN.md`. The most important: confirm the canonical host (`ietservice.lk` currently redirects to `www`), opening hours, the map pin, TVS logo permission, and real photos.
