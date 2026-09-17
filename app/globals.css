@@ -455,6 +455,23 @@ h1 em {
 }
 .next-chapter svg { grid-column: 2; grid-row: 1 / span 2; }
 
+.vision {
+  width: min(1440px, calc(100% - 72px));
+  margin: 0 auto 24px;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  line-height: 0;
+  border: 1px solid rgba(108,181,225,.34);
+  border-radius: 14px 14px 40px 14px;
+  box-shadow: 0 20px 80px rgba(0,0,0,.22);
+}
+
+.vision img {
+  width: 100%;
+  height: auto;
+}
+
 .footer {
   width: min(1440px, calc(100% - 72px));
   margin: 0 auto;

@@ -227,6 +227,16 @@ export default function ComingSoonPage() {
         </div>
       </section>
 
+      <section className="vision">
+        <Image
+          src="/media/iet-vision-station.webp"
+          alt="Illustration of the service station IET Service Point is working towards"
+          width={1672}
+          height={941}
+          sizes="(max-width: 1512px) 100vw, 1440px"
+        />
+      </section>
+
       <footer className="footer">
         <span>© {new Date().getFullYear()} IET Service Point. All rights reserved.</span>
         <span>INUVIL&nbsp;&nbsp;|&nbsp;&nbsp;JAFFNA&nbsp;&nbsp;|&nbsp;&nbsp;NORTHERN PROVINCE&nbsp;&nbsp;|&nbsp;&nbsp;SRI LANKA</span>
