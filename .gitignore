@@ -4,3 +4,8 @@ out
 .env
 .env.local
 .DS_Store
+*.tsbuildinfo
+next-env.d.ts
+
+# Local editor and agent tooling
+.claude/
