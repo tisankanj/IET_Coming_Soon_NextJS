@@ -145,6 +145,27 @@ Wide landscape photograph of a quiet red-earth road lined with palmyra palm tree
 | B10 (optional) | `iet-service-point-first-anniversary` | Future first-anniversary page | 3:2 | A real photo from the first-anniversary day or celebration. |
 | B11 (optional) | `iet-service-point-customer-handover` | Future reviews section | 4:5 | A customer receiving their three-wheeler after service. Written consent from the customer is required. |
 
+**Received 17 September 2026: B1 to B9 and B11, all live on the site.** They arrived unnamed, so the mapping is recorded here:
+
+| Slot | Source file | Delivered size |
+| --- | --- | --- |
+| B1 workshop exterior | `1.png` (front of the workshop with the team outside) | 1672 x 941 |
+| B2 TVS dealer board | `3.png` | 1448 x 1086 |
+| B3 service bay | `4.png` | 1536 x 1024 |
+| B4 technician at work | `5.png` | 1122 x 1402 |
+| B5 genuine parts | `6.png` | 1122 x 1402 |
+| B6 genuine parts label | `7.png` | 1254 x 1254 |
+| B7 J. Sujinthan | `suji.png` | 1122 x 1402 |
+| B8 S. Jeyakumar | `jeya.png` | 1122 x 1402 |
+| B9 team | `67.png` (daytime, IET workwear) | 1536 x 1024 |
+| B11 customer handover | `10.png`, shown on `/about/` | 1122 x 1402 |
+
+Notes for a future round:
+
+- Tisankan confirmed the customer in B11 gave written consent, and chose to keep the printed MRP visible on the B6 label photo.
+- Still in `../image-originals/brand/` and unused: a second workshop exterior, a night team photo with the anniversary cake, an anniversary collage with text baked in, and three phone photos (one is a real water wash, which could replace the AI art A10 if a sharper version exists).
+- The files arrive at sizes typical of an AI upscaler. They show the real place and people, so they are used as evidence photos. Anything AI generated rather than photographed must not be used as proof.
+
 ---
 
 ## C. Official brand files (1)

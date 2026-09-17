@@ -1,4 +1,5 @@
 import { Leadership } from "@/components/home/leadership";
+import { SiteImage } from "@/components/media/site-image";
 import { CtaBand } from "@/components/shared/cta-band";
 import { GrowthPhases } from "@/components/shared/growth-phases";
 import { KeepHyphenWords } from "@/components/shared/keep-hyphen-words";
@@ -73,6 +74,9 @@ export default function AboutPage() {
                   </div>
                 ))}
               </dl>
+            </div>
+            <div className="relative mt-4 aspect-[4/3] overflow-hidden frame-asym">
+              <SiteImage image="customerHandover" sizes="(min-width: 1024px) 28rem, 100vw" />
             </div>
           </aside>
         </div>

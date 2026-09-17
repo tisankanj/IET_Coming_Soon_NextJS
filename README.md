@@ -85,4 +85,4 @@ Events from the spec are pushed to `window.dataLayer`. Links use `data-track="cl
 
 ## Before launch
 
-See "Open items for the client" in `docs/WEBSITE-BUILD-PLAN.md`. The most important: confirm the canonical host (`ietservice.lk` currently redirects to `www`), opening hours, the map pin, TVS logo permission, and real photos.
+See "Open items for the client" in `docs/WEBSITE-BUILD-PLAN.md`. The most important: confirm the canonical host (`ietservice.lk` currently redirects to `www`), opening hours and the map pin. Every image slot is filled: AI art, the real photos and the official TVS logo all arrived on 17 September 2026.

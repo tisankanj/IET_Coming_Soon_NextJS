@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRightIcon, PhoneIcon } from "lucide-react";
 
+import { SiteImage } from "@/components/media/site-image";
 import { BookingAside } from "@/components/services/booking-aside";
 import { ServiceSections } from "@/components/services/service-sections";
 import { CtaBand } from "@/components/shared/cta-band";
@@ -13,7 +14,7 @@ import { ServiceJourney } from "@/components/shared/service-journey";
 import { Button } from "@/components/ui/button";
 import { ROUTES, SERVICE_SLUGS, serviceRoute, type ServiceSlug } from "@/config/routes";
 import { BUSINESS, CONTACT_LINKS } from "@/config/site";
-import { getServiceNameBySlug, getServicePage } from "@/content/en/services";
+import { getServicePage } from "@/content/en/services";
 import { buildServiceSchema } from "@/lib/schema/service";
 import { buildMetadata } from "@/lib/seo/metadata";
 
@@ -54,6 +55,9 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
   const { service, page } = match;
   const bookingHref = `${ROUTES.bookService}?service=${service.id}`;
+  const relatedServices = page.related
+    .map((relatedSlug) => getServicePage(relatedSlug))
+    .filter((related) => related !== undefined);
 
   return (
     <>
@@ -104,15 +108,18 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         <div className="container-wide">
           <h2 className="font-display text-title font-semibold">Related services</h2>
           <ul className="mt-6 grid gap-3 sm:grid-cols-3">
-            {page.related.map((relatedSlug) => (
-              <li key={relatedSlug}>
+            {relatedServices.map(({ service: related, page: relatedPage }) => (
+              <li key={relatedPage.slug}>
                 <Link
-                  href={serviceRoute(relatedSlug)}
-                  className="group flex items-center justify-between gap-4 rounded-panel border bg-card p-5 font-semibold transition-colors hover:border-foreground/40"
+                  href={serviceRoute(relatedPage.slug)}
+                  className="group flex items-center gap-4 rounded-panel border bg-card p-3 pr-5 font-semibold transition-colors hover:border-foreground/40"
                 >
-                  {getServiceNameBySlug(relatedSlug)}
+                  <span className="relative size-16 shrink-0 overflow-hidden rounded-chip">
+                    <SiteImage image={related.image} sizes="4rem" />
+                  </span>
+                  {related.name}
                   <ArrowRightIcon
-                    className="size-4 text-brand-orange transition-transform group-hover:translate-x-0.5"
+                    className="ml-auto size-4 shrink-0 text-brand-orange transition-transform group-hover:translate-x-0.5"
                     aria-hidden="true"
                   />
                 </Link>
